@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :ensure_correct_user, only: [:update]
+  before_action :correct_user, only: [:update]
 
   def show
     @user = User.find(params[:id])
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
-
+  end
   def ensure_correct_user
     @user = User.find(params[:id])
     unless @user == current_user
